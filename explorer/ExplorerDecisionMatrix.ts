@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx"
 import { queryParamsToStr } from "../clientUtils/urls/UrlUtils"
-import { differenceObj, trimObject } from "../clientUtils/Util"
+import { trimObject } from "../clientUtils/Util"
 import { ColumnTypeNames } from "../coreTable/CoreColumnDef"
 import { CoreTable } from "../coreTable/CoreTable"
 import {
@@ -127,27 +127,8 @@ export class DecisionMatrix {
         return settings
     }
 
-    @computed
-    private get diffBetweenUserSettingsAndConstrained(): ExplorerChoiceParams {
-        return differenceObj(
-            this.toConstrainedOptions(),
-            this.currentParams
-        ) as ExplorerChoiceParams
-    }
-
     @action.bound setValueCommand(choiceName: ChoiceName, value: ChoiceValue) {
-        const currentInvalidState = this.diffBetweenUserSettingsAndConstrained
         this._setValue(choiceName, value)
-        const newInvalidState = this.diffBetweenUserSettingsAndConstrained
-        Object.keys(currentInvalidState).forEach((key) => {
-            /**
-             * The user navigated to an invalid state. Then they made a change in the new state, but the old invalid props were still set. At this
-             * point, we should delete the old invalid props. We only want to allow the user to go back 1, not a full undo/redo history.
-             */
-            if (currentInvalidState[key] === newInvalidState[key]) {
-                this._setValue(key, currentInvalidState[key])
-            }
-        })
     }
 
     @action.bound private _setValue(
