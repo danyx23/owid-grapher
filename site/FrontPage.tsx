@@ -129,43 +129,6 @@ export const FrontPage = (props: {
                     </div>
                 </section>
 
-                <section className="homepage-posts">
-                    <div className="wrapper">
-                        <div className="owid-row">
-                            <div className="owid-col flex-row">
-                                <div className="homepage-posts--explainers">
-                                    <h2 className="heading-latest">Featured</h2>
-                                    <ul>
-                                        {featuredWork.map((post) => (
-                                            <li key={post.slug}>
-                                                <PostCard
-                                                    post={post}
-                                                    hideDate={true}
-                                                />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="see-all">
-                                        <a
-                                            href="/latest"
-                                            data-track-note="homepage_see_all_explainers"
-                                        >
-                                            <div className="label">
-                                                See all of our latest work
-                                            </div>
-                                            <div className="icon">
-                                                <FontAwesomeIcon
-                                                    icon={faAngleRight}
-                                                />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 <section className="homepage-subscribe" id="subscribe">
                     <div className="wrapper">
                         <div className="owid-row">
@@ -274,6 +237,43 @@ export const FrontPage = (props: {
                                                 </div>
                                             </a>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="homepage-posts">
+                    <div className="wrapper">
+                        <div className="owid-row">
+                            <div className="owid-col flex-row">
+                                <div className="homepage-posts--explainers">
+                                    <h2 className="heading-latest">Featured</h2>
+                                    <ul>
+                                        {featuredWork.map((post) => (
+                                            <li key={post.slug}>
+                                                <PostCard
+                                                    post={post}
+                                                    hideDate={true}
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className="see-all">
+                                        <a
+                                            href="/latest"
+                                            data-track-note="homepage_see_all_explainers"
+                                        >
+                                            <div className="label">
+                                                See all of our latest work
+                                            </div>
+                                            <div className="icon">
+                                                <FontAwesomeIcon
+                                                    icon={faAngleRight}
+                                                />
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
